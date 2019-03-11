@@ -32,7 +32,7 @@ A\*B\*C\*....X\*Y\*Z\*a\*b\*c\*d\*........x\*y\*z\*  共52个
 (\\/\\\*)([^\*"]\*|".\*"|\\\*+[^/])*(\\\*\\/)
 
 
-
+![Image text](https://github.com/YULuoOo/compiler/blob/master/homework/QQ20190312-0.png)
 
 
 #### d) 不包含重复数字的数字串（DFA）
