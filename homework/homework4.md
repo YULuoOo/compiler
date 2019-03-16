@@ -81,8 +81,8 @@
 | {1,2,3,4,6,7} | B | B | C
 | {1,2,3,5,6,7} | C | B | C
 
-    前三题的DFA相同 故只放一次图
-    ![Image text](https://github.com/YULuoOo/compiler/blob/master/homework/IMG_0791.JPG)
+前三题的DFA相同 故只放一次图
+![Image text](https://github.com/YULuoOo/compiler/blob/master/homework/IMG_0791.JPG)
 
 #### b) (a\* | b\*)\*
     计算步骤为
