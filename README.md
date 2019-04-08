@@ -11,3 +11,4 @@
 5. [第五周作业](https://github.com/YULuoOo/compiler/blob/master/homework/homework5.md)  
       [思考题](https://github.com/YULuoOo/compiler/blob/master/homework/homework5.2.md)
 6. [第六周作业](https://github.com/YULuoOo/compiler/blob/master/homework/homework6.md)
+7. [第七周作业](https://github.com/YULuoOo/compiler/blob/master/homework/homework7.md)
