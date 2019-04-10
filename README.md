@@ -1,5 +1,7 @@
 # compiler
 ## 编译原理课程
+### 实验
+1. [java实现对c词法分析](https://github.com/YULuoOo/compiler/tree/master/Java_LexAnalysisLab)
 ### 作业
 1. [第一周作业](https://github.com/YULuoOo/compiler/blob/master/homework/homework1.md)  
 
