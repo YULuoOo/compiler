@@ -20,4 +20,13 @@ S => aSbS => aSbaSbS => aSbaSb => aSbab => abab
 
 #### c) 构造abab语法树
 
-
+```
+                S
+               / \
+             / | | \
+            a  S b   S
+               |   / | | \
+               ε  a  S b  S 
+                     |    |
+                     ε    ε
+```
