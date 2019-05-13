@@ -26,6 +26,11 @@ first(F)={a,b}
 follow(E)={+,$}
 follow(T)={a,b,$}
 follow(F)={a,b,*,$}
+
+follow算错了 所以后面表也错了
+follow(T)={+,a,b,$}
+follow(F)={+,a,b,*,$}
+
 ```
 开始罗列GOTO得到的状态
 ```
