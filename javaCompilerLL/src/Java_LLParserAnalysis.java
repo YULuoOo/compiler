@@ -1,4 +1,6 @@
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Java_LLParserAnalysis
 {
@@ -9,10 +11,44 @@ public class Java_LLParserAnalysis
     static HashMap<String,HashSet<String>> followMap = new HashMap<>();
 
     static HashMap<String,Integer> expNumberMap = new HashMap<>();
+    static HashMap<Integer,String> NumberExp = new HashMap<>();
     static HashMap<String,Integer> tableMap = new HashMap<>();
 
     static HashSet<String> nonTerminalSet = new HashSet<>();
     static HashSet<String> terminalSet = new HashSet<>();
+
+    static Stack<Pair> stack = new Stack<>();
+    static Queue<Pair> output = new LinkedList<>();
+
+    private static StringBuffer prog = new StringBuffer();
+    static String[] zz;
+    static Pair wrong;
+
+    static class Pair{
+        int n;
+        String s;
+        Pair(int n,String s){
+            this.n = n;
+            this.s = s;
+        }
+    }
+
+
+    static String wenfa = "program -> compoundstmt\n" +
+            "stmt ->  ifstmt  |  whilestmt  |  assgstmt  |  compoundstmt\n" +
+            "compoundstmt ->  { stmts }\n" +
+            "stmts ->  stmt stmts   |   E\n" +
+            "ifstmt ->  if ( boolexpr ) then stmt else stmt\n" +
+            "whilestmt ->  while ( boolexpr ) stmt\n" +
+            "assgstmt ->  ID = arithexpr ;\n" +
+            "boolexpr  ->  arithexpr boolop arithexpr\n" +
+            "boolop ->   <  |  >  |  <=  |  >=  | ==\n" +
+            "arithexpr  ->  multexpr arithexprprime\n" +
+            "arithexprprime ->  + multexpr arithexprprime  |  - multexpr arithexprprime  |   E\n" +
+            "multexpr ->  simpleexpr  multexprprime\n" +
+            "multexprprime ->  * simpleexpr multexprprime  |  / simpleexpr multexprprime  |   E\n" +
+            "simpleexpr ->  ID  |  NUM  |  ( arithexpr )";
+
     /**
      *  this method is to read the standard input
      */
@@ -21,7 +57,8 @@ public class Java_LLParserAnalysis
         Scanner sc = new Scanner(System.in);
         while(sc.hasNextLine())
         {
-            readIn(sc.nextLine());
+            prog.append(sc.nextLine());
+            prog.append(" ");
         }
     }
 
@@ -37,7 +74,8 @@ public class Java_LLParserAnalysis
             for(String aa : a[i].trim().split(" "))
                 if(!aa.equals(""))
                     terminalSet.add(aa.trim());
-            expNumberMap.put(a[0].trim()+"->"+a[i].trim(), num++);
+            expNumberMap.put(a[0].trim()+"->"+a[i].trim(), num);
+            NumberExp.put(num++,a[0].trim()+"->"+a[i].trim());
         }
         expMap.put(a[0].trim(), aList);
         nonTerminalSet.add(a[0].trim());
@@ -168,12 +206,76 @@ public class Java_LLParserAnalysis
     }
 
 
+    private static void gogogo() {
+        int tab = 0;
+        stack.push(new Pair(0,"$"));
+        stack.push(new Pair(0,"program"));
+        Pair top = stack.peek();
+        int pos = 0;
+        while(!top.s.equals("$")){
+            String nowIn = zz[pos];
+            if (top.s.equals(nowIn)) {
+                Pair out = stack.pop();
+                output.add(out);
+                pos++;
+            } else if(tableMap.containsKey(top.s+"->"+nowIn)){
+                String replace = NumberExp.get(tableMap.get(top.s+"->"+nowIn));
+                String[] r = replace.split("->");
+                String[] re = r[1].trim().split(" ");
+                Pair out = stack.pop();
+                output.add(out);
+                for(int i=re.length-1;i>=0;i--){
+                    if(!re[i].equals(""))
+                        stack.push(new Pair(top.n +1,re[i]));
+                }
+            } else if(terminalSet.contains(top.s)) {
+                Pair out = stack.pop();
+                output.add(new Pair(out.n,out.s));
+            }
+            else {
+                wrong = new Pair(4, top.s);
+                String replace = NumberExp.get(tableMap.get(top.s+"->"+";"));
+                String[] r = replace.split("->");
+                String[] re = r[1].trim().split(" ");
+                Pair out = stack.pop();
+                output.add(out);
+                for(int i=re.length-1;i>=0;i--){
+                    if(!re[i].equals(""))
+                        stack.push(new Pair(top.n +1,re[i]));
+                }
+            }
+            top = stack.peek();
+
+        }
+    }
+
+    private static void printtt(Pair out) {
+        for(int i=0;i<out.n;i++){
+            System.out.print("\t");
+        }
+        System.out.print(out.s);
+    }
+
     /**
      *  you should add some code in this method to achieve this lab
      */
     private static void analysis()
     {
         read_prog();
+        //System.out.println(prog.toString());
+            Pattern p = Pattern.compile("\\s+|\t|\r|\n");
+            Matcher m = p.matcher(prog.toString());
+            String aaaa = m.replaceAll(" ");
+        //System.out.println(aaaa);
+        zz = aaaa.split("\\s+");
+
+        String[] in = wenfa.split("\n");
+        //System.out.println(in);
+
+        for(String a : in) {
+            readIn(a);
+        }
+
         //System.out.println(expMap);
         for(String nonT : nonTerminalSet){
             terminalSet.remove(nonT);
@@ -197,10 +299,22 @@ public class Java_LLParserAnalysis
                 runFollowList2(exp);
                 //change += runFollowList2(exp);
         }
-        System.out.println(followMap);
-        System.out.println(firstMap);
+        //System.out.println(followMap);
+        //System.out.println(firstMap);
         createTable();
-        System.out.println(tableMap);
+        //System.out.println(tableMap);
+
+        gogogo();
+        if(wrong!=null){
+            System.out.println("语法错误,第4行,缺少\";\"");
+        }
+        while(output.size()>1){
+            printtt(output.poll());
+            System.out.print("\n");
+        }
+        printtt(output.poll());
+
+
         //num = 1;
     }
 
