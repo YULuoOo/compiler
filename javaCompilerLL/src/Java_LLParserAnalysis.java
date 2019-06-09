@@ -21,8 +21,18 @@ public class Java_LLParserAnalysis
     static Queue<Pair> output = new LinkedList<>();
 
     private static StringBuffer prog = new StringBuffer();
-    static String[] zz;
+    static ArrayList<XX> zz = new ArrayList<>();
     static Pair wrong;
+
+    static class XX{
+        int hang;
+        String s;
+
+        public XX(int hang, String s) {
+            this.hang = hang;
+            this.s = s;
+        }
+    }
 
     static class Pair{
         int n;
@@ -34,7 +44,8 @@ public class Java_LLParserAnalysis
     }
 
 
-    static String wenfa = "program -> compoundstmt\n" +
+    static String wenfa = "S -> program\n" +
+            "program -> compoundstmt\n" +
             "stmt ->  ifstmt  |  whilestmt  |  assgstmt  |  compoundstmt\n" +
             "compoundstmt ->  { stmts }\n" +
             "stmts ->  stmt stmts   |   E\n" +
@@ -58,7 +69,7 @@ public class Java_LLParserAnalysis
         while(sc.hasNextLine())
         {
             prog.append(sc.nextLine());
-            prog.append(" ");
+            prog.append("!");
         }
     }
 
@@ -213,13 +224,13 @@ public class Java_LLParserAnalysis
         Pair top = stack.peek();
         int pos = 0;
         while(!top.s.equals("$")){
-            String nowIn = zz[pos];
-            if (top.s.equals(nowIn)) {
+            XX nowIn = zz.get(pos);
+            if (top.s.equals(nowIn.s)) {
                 Pair out = stack.pop();
                 output.add(out);
                 pos++;
-            } else if(tableMap.containsKey(top.s+"->"+nowIn)){
-                String replace = NumberExp.get(tableMap.get(top.s+"->"+nowIn));
+            } else if(tableMap.containsKey(top.s+"->"+nowIn.s)){
+                String replace = NumberExp.get(tableMap.get(top.s+"->"+nowIn.s));
                 String[] r = replace.split("->");
                 String[] re = r[1].trim().split(" ");
                 Pair out = stack.pop();
@@ -233,11 +244,11 @@ public class Java_LLParserAnalysis
                 output.add(new Pair(out.n,out.s));
             }
             else {
-                wrong = new Pair(4, top.s);
                 String replace = NumberExp.get(tableMap.get(top.s+"->"+";"));
                 String[] r = replace.split("->");
                 String[] re = r[1].trim().split(" ");
                 Pair out = stack.pop();
+                wrong = new Pair(nowIn.hang-1, stack.peek().s);
                 output.add(out);
                 for(int i=re.length-1;i>=0;i--){
                     if(!re[i].equals(""))
@@ -263,11 +274,19 @@ public class Java_LLParserAnalysis
     {
         read_prog();
         //System.out.println(prog.toString());
-            Pattern p = Pattern.compile("\\s+|\t|\r|\n");
-            Matcher m = p.matcher(prog.toString());
-            String aaaa = m.replaceAll(" ");
-        //System.out.println(aaaa);
-        zz = aaaa.split("\\s+");
+//        Pattern p = Pattern.compile("\\s+|\t|\r|\n");
+//        Matcher m = p.matcher(prog.toString());
+//        String aaaa = m.replaceAll(" ");
+        String aaaa[] = prog.toString().split("!");
+        // System.out.println(Arrays.toString(aaaa));
+        for(int i =1;i<=aaaa.length;i++)
+        {
+            String t[] = aaaa[i-1].trim().split(" ");
+            for(String s : t){
+                zz.add(new XX(i,s));
+            }
+        }
+
 
         String[] in = wenfa.split("\n");
         //System.out.println(in);
@@ -289,7 +308,7 @@ public class Java_LLParserAnalysis
         //System.out.println(firstMap);
         for(String exp : nonTerminalSet)
             runFollowList1(exp);
-        followMap.get("program").add("$");
+        followMap.get("S").add("$");
 
         //System.out.println(followMap);
         int change = 2;
@@ -297,7 +316,7 @@ public class Java_LLParserAnalysis
             change--;
             for (String exp : nonTerminalSet)
                 runFollowList2(exp);
-                //change += runFollowList2(exp);
+            //change += runFollowList2(exp);
         }
         //System.out.println(followMap);
         //System.out.println(firstMap);
@@ -306,7 +325,7 @@ public class Java_LLParserAnalysis
 
         gogogo();
         if(wrong!=null){
-            System.out.println("语法错误,第4行,缺少\";\"");
+            System.out.println("语法错误,第"+wrong.n+"行,缺少\""+wrong.s+"\"");
         }
         while(output.size()>1){
             printtt(output.poll());
@@ -326,4 +345,3 @@ public class Java_LLParserAnalysis
         analysis();
     }
 }
-
