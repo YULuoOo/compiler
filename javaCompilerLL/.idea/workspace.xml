@@ -2,7 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d03ddb45-9a7e-4bdb-b576-ed24d748302b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../Java_TranslationSchemaAnalysis/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Java_TranslationSchemaAnalysis/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Java_TranslationSchemaAnalysis/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Java_TranslationSchemaAnalysis/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Java_TranslationSchemaAnalysis/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Java_TranslationSchemaAnalysis/Java_TranslationSchemaAnalysis.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Java_TranslationSchemaAnalysis/src/Java_TranslationSchemaAnalysis.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../javaCompilerSLR/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../javaCompilerSLR/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -16,7 +24,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/javaCompilerLL.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4788">
+            <state relative-caret-position="4864">
               <caret line="256" column="22" selection-start-line="256" selection-start-column="22" selection-end-line="256" selection-end-column="22" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -37,12 +45,12 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Java_LLParserAnalysis.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5985">
-              <caret line="315" selection-start-line="315" selection-end-line="315" />
+            <state relative-caret-position="114">
+              <caret line="256" column="13" lean-forward="true" selection-start-line="256" selection-start-column="13" selection-end-line="256" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#11089#11090#0" expanded="true" />
-                <element signature="e#11115#11116#0" expanded="true" />
+                <element signature="e#11579#11580#0" expanded="true" />
+                <element signature="e#11605#11606#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -112,8 +120,8 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -182,17 +190,20 @@
       <workItem from="1559493201250" duration="2135000" />
       <workItem from="1559545318504" duration="6436000" />
       <workItem from="1559630091613" duration="285000" />
+      <workItem from="1560089046637" duration="199000" />
+      <workItem from="1560236749860" duration="625000" />
+      <workItem from="1560266970018" duration="102000" />
+      <workItem from="1560325847456" duration="103000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="31458000" />
+    <option name="totallyTimeSpent" value="32487000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2002457" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21253072" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -201,7 +212,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32996973" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3298647" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.45812312" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -232,7 +243,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Java_LLParserAnalysis.java</url>
-          <line>237</line>
+          <line>247</line>
           <properties />
           <option name="timeStamp" value="7" />
         </line-breakpoint>
@@ -249,7 +260,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/javaCompilerLL.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4788">
+        <state relative-caret-position="4864">
           <caret line="256" column="22" selection-start-line="256" selection-start-column="22" selection-end-line="256" selection-end-column="22" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -276,12 +287,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Java_LLParserAnalysis.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5985">
-          <caret line="315" selection-start-line="315" selection-end-line="315" />
+        <state relative-caret-position="114">
+          <caret line="256" column="13" lean-forward="true" selection-start-line="256" selection-start-column="13" selection-end-line="256" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#11089#11090#0" expanded="true" />
-            <element signature="e#11115#11116#0" expanded="true" />
+            <element signature="e#11579#11580#0" expanded="true" />
+            <element signature="e#11605#11606#0" expanded="true" />
           </folding>
         </state>
       </provider>
