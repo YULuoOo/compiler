@@ -42,17 +42,14 @@ A → Dd)    {print”4”}
 
 若输入字符序列为a(((dd)d)d)a，且采用自上而下的分析方法，请写出语义执行的输出序列”34242421”。
 ```
-                        a(((dd)d)d)a
-T → aDa    {print”1”}   (((dd)d)d)
-D → (A     {print”2”}   ((dd)d)d)
-A → Dd)    {print”4”}   ((dd)d)
-D → (A     {print”2”}   (dd)d)
-A → Dd)    {print”4”}   (dd)
-D → (A     {print”2”}   dd)
-A → Dd)    {print”4”}   d
-D → d      {print”3”} 
-倒着输出就是结果
-
+T→aDa{print “1”}
+→a(A{print “2”}a{print “1”}
+→a(Dd){print “4”}{print “2”}a{print “1”} 
+→a((A{print “2”}d){print “4”}{print “2”}a{print “1”}
+→a((Dd){print “4”}{print “2”}d){print “4”}{print “2”}a{print “1”}
+→a(((A{print “2”}d){print “4”}{print “2”}d){print “4”}{print “2”}a{print “1”} 
+→a(((Dd){print “4”}{print “2”}d){print “4”}{print “2”}d){print “4”}{print “2”}a{print “1”} 
+→a(((d{print “3”}d){print “4”}{print “2”}d){print “4”}{print “2”}d){print “4”}{print “2”}a{print “1”}
 ```
 
 
